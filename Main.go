@@ -1,16 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
-	"time"
+	"todo-app/routes" // modül adıyla aynı olmalı
 )
 
-func greet(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello World! %s", time.Now())
-}
-
 func main() {
-	http.HandleFunc("/", greet)
-	http.ListenAndServe(":8080", nil)
+	router := routes.NewRouter()
+	log.Println("Server started on :8080")
+	http.ListenAndServe(":8080", router)
 }
